@@ -104,7 +104,7 @@ div#archive {
 /* 手机端适配 */
 @media (max-width: 768px) {
     .custom-head {
-        height: 100px;   /* 手机端高度 */
-        width: auto;   /* 保持纵横比 */
+        width: 100%;      /* 宽度最多占屏幕宽度 */
+        height: auto;     /* 高度按比例缩放 */
     }
 }
