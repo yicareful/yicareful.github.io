@@ -94,7 +94,7 @@ div#archive {
 
 /* 头图在电脑和手机上分别显示大小 */
 .custom-head {
-    height: 300px;       /* 默认电脑端高度 */
+    height: 400px;       /* 默认电脑端高度 */
     width: auto;       /* 保持纵横比 */
     display: block;
     margin: 0 auto;     /* 居中显示 */
