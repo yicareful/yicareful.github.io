@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><script>((function() {var callbacks = [],timeLimit = 50,open = false;setInterval(loop, 1);return {addListener: function(fn) {callbacks.push(fn);},cancleListenr: function(fn) {callbacks = callbacks.filter(function(v) {return v !== fn;});}}
+function loop() {var startTime = new Date();debugger;if (new Date() - startTime > timeLimit) {if (!open) {callbacks.forEach(function(fn) {fn.call(null);});}open = true;window.stop();alert('偷看我的源码？？？');document.body.innerHTML = "";} else {open = false;}}})()).addListener(function() {window.location.reload();});</script><script>function toDevtools(){
+  let num = 0; 
+  let devtools = new Date();
+  devtools.toString = function() {
+    num++;
+    if (num > 1) {
+        alert('偷看我的源码？？？')
+        window.location.href = "about:blank"
+        blast();
+    }
+  }
+  console.log('', devtools);
+}
+toDevtools();</script><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>记录一次更新系统应用导致的手机“救砖” | yicareful's blogs</title><meta name="author" content="Yi careful"><meta name="copyright" content="Yi careful"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="解决“在Android14的手机上将系统应用Flyme Pay更新到基于a16版本后，反复出现闪屏黑屏”的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次更新系统应用导致的手机“救砖”">
+<meta property="og:url" content="https://www.yicareful.site/a54c3ff6ae54/index.html">
+<meta property="og:site_name" content="yicareful&#39;s blogs">
+<meta property="og:description" content="解决“在Android14的手机上将系统应用Flyme Pay更新到基于a16版本后，反复出现闪屏黑屏”的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png">
+<meta property="article:published_time" content="2026-02-08T02:22:48.000Z">
+<meta property="article:modified_time" content="2026-02-08T03:27:54.370Z">
+<meta property="article:author" content="Yi careful">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="手机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "记录一次更新系统应用导致的手机“救砖”",
+  "url": "https://www.yicareful.site/a54c3ff6ae54/",
+  "image": "https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png",
+  "datePublished": "2026-02-08T02:22:48.000Z",
+  "dateModified": "2026-02-08T03:27:54.370Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yi careful",
+      "url": "https://www.yicareful.site"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/head_picture.jpg"><link rel="canonical" href="https://www.yicareful.site/a54c3ff6ae54/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@6.2.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.13.0/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '记录一次更新系统应用导致的手机“救砖”',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://free.picui.cn/free/2026/01/27/697863197fa0d.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yicareful's blogs</span></a><a class="nav-page-title" href="/"><span class="site-name">记录一次更新系统应用导致的手机“救砖”</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">记录一次更新系统应用导致的手机“救砖”</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-08T02:22:48.000Z" title="发表于 2026-02-08 10:22:48">2026-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-08T03:27:54.370Z" title="更新于 2026-02-08 11:27:54">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E9%97%AE%E9%A2%98/">软件问题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">918</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><img src="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png" alt="头图" class="custom-head">
+
+<h2 id="事件起因"><a href="#事件起因" class="headerlink" title="事件起因"></a>事件起因</h2><p>&emsp; 昨天凌晨2点钟起来打开酷安，偶然看到这样一条帖子，说是让之前几个安卓版本的Flyme试一下更新Flyme Pay到12.16.6版本(是Flyme12.6提取出来的，Flyme12.6基于安卓16的版本)，看能不能正常使用: </p>
+<div align="center">
+    <img src="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/tiezi.png" alt="帖子" width="300">
+</div>
+
+<p>&emsp; 这我不高低得试一试，直接下载了他链接里的Flyme Pay的apk。安装的过程倒是很顺利，直接就安装上了，好家伙，结果手机马上就黑屏，我心咯噔了一下，知道要出大问题了，再次按下电源键电量屏幕之后，屏幕亮1s钟左右就又黑屏，然后如此循环闪屏-黑屏-闪屏-黑屏。<br>&emsp; 长按电源键，弹出了关机和重启的选项，这个界面是在上层的，虽然下面的图层还在闪，重启的选项倒是还能点击，然后就重启了。如果重启之后不输入锁屏密码进到桌面的话，无事发生，但是输了密码进去之后就又开始闪，无奈只能再次重启，这时我想到一个办法: 既然手机是可以打开的，<strong>那我通过adb的命令将刚刚安装的Flyme Pay给卸载了</strong>，问题多半就能暂时解决了。好在我手机的<code>开发者模式</code>是常年打开的（不然这没法操作屏幕的情况下，adb打不开，那就真的废了得去售后了），连上了电脑上吃灰很久的、来自机圈大佬<a target="_blank" rel="noopener" href="https://space.bilibili.com/251013709?spm_id_from=333.337.0.0">晨钟酱</a>的<strong>搞机工具箱</strong>，并成功打开了adb的界面:</p>
+<div align="center">
+    <img src="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/adb.png" alt="搞机工具箱" width="300">
+</div>
+
+<p>&emsp; 那么之后的操作步骤就显而易见了:</p>
+<ul>
+<li>找出Flyme Pay的包名</li>
+<li>通过<code>adb shell pm uninstall</code>命令卸载Flyme Pay</li>
+<li>重新下载别人提取的之前版本的Flyme Pay的apk</li>
+</ul>
+<hr>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>&emsp; 那么Flyme Pay的包名怎么找呢？一开始我问了豆包，它说是<code>com.meizu.flyme.wallet</code>，结果当我执行<code>adb shell pm uninstall -k --user 0 com.meizu.flyme.wallet</code>时出现了报错<code>Failure [not installed for 0]</code>，说明手机里没有这个包名的应用 <em>(可能是豆包搜到的信息太久了，Flyme10之前的Flyme Pay确实是这个包名)</em>。那只能自己用adb命令把有关支付的包名列出来查了然后卸载:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找钱包/支付相关的包名</span></span><br><span class="line">adb shell pm list packages | findstr pay</span><br><span class="line"><span class="comment"># 应该能看到找出来两个：com.meizu.mznfcpay 和 com.meizu.account.pay, 很明显是前者</span></span><br><span class="line">adb shell pm uninstall -k --user 0 com.meizu.mznfcpay</span><br><span class="line"><span class="comment"># 卸载成功然后重启</span></span><br><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+<p>&emsp; 再次打开之后输入锁屏密码进入桌面就可以正常使用了，只是有关Flyme pay的相关组件没法用 <em>(这不废话，都卸载了怎么能用)</em>，比如双击电源键打开地铁卡。接下来就是找别人提取出来的Flyme Pay的apk重新安装就行了，这里我找了基于Android15的<code>12.2.2</code>版本 <em>(虽然跨了一个安卓版本，不过安装之后没有问题)</em>，问题终于得到解决，凌晨3点钟终于可以睡觉了。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp; 这次手机差点成砖就是纯纯手欠，把系统应用连跨2个Android版本进行更新。更新之前以为Flyme Pay这样的钱包应用能掀起什么波澜？又不是像桌面或者锁屏组件那样的会卡开机。确实不会卡开机，但是闪屏-黑屏也没法正常使用.问题解决的关键点在于我手机的<code>开发者模式</code>是一直打开的，可以直接连上adb工具进行操作。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.yicareful.site">Yi careful</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.yicareful.site/a54c3ff6ae54/">https://www.yicareful.site/a54c3ff6ae54/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.yicareful.site" target="_blank">yicareful's blogs</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81/">代码</a><a class="post-meta__tags" href="/tags/%E6%89%8B%E6%9C%BA/">手机</a></div><div class="post-share"><div class="social-share" data-image="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/c76b9845ccd2/" title="解决QQ.exe启动无响应的问题"><img class="cover" src="https://img.yicareful.site/blog/QQ%E6%97%A0%E5%93%8D%E5%BA%94/small.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">解决QQ.exe启动无响应的问题</div></div><div class="info-2"><div class="info-item-1">解决“安装LiteloaderQQNT时，将QQ.exe替换之后双击无反应，只能通过命令行启动”的问题。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/c76b9845ccd2/" title="解决QQ.exe启动无响应的问题"><img class="cover" src="https://img.yicareful.site/blog/QQ%E6%97%A0%E5%93%8D%E5%BA%94/small.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-05</div><div class="info-item-2">解决QQ.exe启动无响应的问题</div></div><div class="info-2"><div class="info-item-1">解决“安装LiteloaderQQNT时，将QQ.exe替换之后双击无反应，只能通过命令行启动”的问题。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head_picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yi careful</div><div class="author-info-description">这个人很懒，什么都没有写</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yicareful"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yicareful" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2968617911@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAvwDnXnkGmsqEbAiSIwH_ZWCYSOMgFxLKDs7Qk1nVdlq8f_3DgfvQkw275WPpKwM7?from_tab_name=main" target="_blank" title="douyin"><i class="fab fa-tiktok" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E8%B5%B7%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">事件起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/a54c3ff6ae54/" title="记录一次更新系统应用导致的手机“救砖”"><img src="https://img.yicareful.site/blog/%E6%95%91%E7%A0%96/small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记录一次更新系统应用导致的手机“救砖”"/></a><div class="content"><a class="title" href="/a54c3ff6ae54/" title="记录一次更新系统应用导致的手机“救砖”">记录一次更新系统应用导致的手机“救砖”</a><time datetime="2026-02-08T02:22:48.000Z" title="发表于 2026-02-08 10:22:48">2026-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/c76b9845ccd2/" title="解决QQ.exe启动无响应的问题"><img src="https://img.yicareful.site/blog/QQ%E6%97%A0%E5%93%8D%E5%BA%94/small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决QQ.exe启动无响应的问题"/></a><div class="content"><a class="title" href="/c76b9845ccd2/" title="解决QQ.exe启动无响应的问题">解决QQ.exe启动无响应的问题</a><time datetime="2026-02-05T10:58:58.000Z" title="发表于 2026-02-05 18:58:58">2026-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/059a1fc670c1/" title="跑鞋怎么选(新手向)"><img src="https://img.yicareful.site/blog/%E8%B7%91%E9%9E%8B%E6%80%8E%E4%B9%88%E9%80%89/small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跑鞋怎么选(新手向)"/></a><div class="content"><a class="title" href="/059a1fc670c1/" title="跑鞋怎么选(新手向)">跑鞋怎么选(新手向)</a><time datetime="2026-02-04T03:33:04.000Z" title="发表于 2026-02-04 11:33:04">2026-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/c62432c7511f/" title="李宁飞电5elite 100km长测"><img src="https://img.yicareful.site/blog/%E9%A3%9E%E7%94%B55e%E9%95%BF%E6%B5%8B/small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="李宁飞电5elite 100km长测"/></a><div class="content"><a class="title" href="/c62432c7511f/" title="李宁飞电5elite 100km长测">李宁飞电5elite 100km长测</a><time datetime="2026-01-28T08:31:21.000Z" title="发表于 2026-01-28 16:31:21">2026-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/59cc6342dd49/" title="Hello World"><img src="https://img.yicareful.site/blog/hello-world/hello-world-small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/59cc6342dd49/" title="Hello World">Hello World</a><time datetime="2026-01-26T16:00:00.000Z" title="发表于 2026-01-27 00:00:00">2026-01-27</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yi careful</span></div><div class="footer_custom_text">powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/f12.js"></script><script id="canvas_nest" defer="defer" color="251,210,106" opacity="0.2" zIndex="-1" count="99" mobile="true" src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/canvas-nest.min.js"></script></div></body></html>
