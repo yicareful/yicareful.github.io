@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><script>((function() {var callbacks = [],timeLimit = 50,open = false;setInterval(loop, 1);return {addListener: function(fn) {callbacks.push(fn);},cancleListenr: function(fn) {callbacks = callbacks.filter(function(v) {return v !== fn;});}}
+function loop() {var startTime = new Date();debugger;if (new Date() - startTime > timeLimit) {if (!open) {callbacks.forEach(function(fn) {fn.call(null);});}open = true;window.stop();alert('偷看我的源码？？？');document.body.innerHTML = "";} else {open = false;}}})()).addListener(function() {window.location.reload();});</script><script>function toDevtools(){
+  let num = 0; 
+  let devtools = new Date();
+  devtools.toString = function() {
+    num++;
+    if (num > 1) {
+        alert('偷看我的源码？？？')
+        window.location.href = "about:blank"
+        blast();
+    }
+  }
+  console.log('', devtools);
+}
+toDevtools();</script><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>yicareful's blogs</title><meta name="author" content="Yi careful"><meta name="copyright" content="Yi careful"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是一个网站描述">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yicareful&#39;s blogs">
+<meta property="og:url" content="https://www.yicareful.site/page/2/index.html">
+<meta property="og:site_name" content="yicareful&#39;s blogs">
+<meta property="og:description" content="这是一个网站描述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.yicareful.site/img/head_picture.jpg">
+<meta property="article:author" content="Yi careful">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.yicareful.site/img/head_picture.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/head_picture.jpg"><link rel="canonical" href="https://www.yicareful.site/page/2/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@6.2.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.13.0/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'yicareful\'s blogs',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://img.yicareful.site/background.webp);"></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/background.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yicareful's blogs</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">yicareful's blogs</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yicareful" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2968617911@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAvwDnXnkGmsqEbAiSIwH_ZWCYSOMgFxLKDs7Qk1nVdlq8f_3DgfvQkw275WPpKwM7?from_tab_name=main" target="_blank" title="douyin"><i class="fab fa-tiktok" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/59cc6342dd49/" title="Hello World"><img class="post-bg" src="https://img.yicareful.site/blog/hello-world/hello-world-small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"></a></div><div class="recent-post-info"><a class="article-title" href="/59cc6342dd49/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-26T16:00:00.000Z" title="发表于 2026-01-27 00:00:00">2026-01-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/">说明文档</a></span></div><div class="content">hexo自动生成的说明文档</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head_picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yi careful</div><div class="author-info-description">学必求其心得，业必贵其专精</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yicareful"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yicareful" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2968617911@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAvwDnXnkGmsqEbAiSIwH_ZWCYSOMgFxLKDs7Qk1nVdlq8f_3DgfvQkw275WPpKwM7?from_tab_name=main" target="_blank" title="douyin"><i class="fab fa-tiktok" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/6577c97dc371/" title="阿迪达斯adios9-350km长测"><img src="https://img.yicareful.site/blog/adios9/small.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿迪达斯adios9-350km长测"/></a><div class="content"><a class="title" href="/6577c97dc371/" title="阿迪达斯adios9-350km长测">阿迪达斯adios9-350km长测</a><time datetime="2026-04-30T12:09:51.000Z" title="发表于 2026-04-30 20:09:51">2026-04-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/fa67d2693609/" title="小米15解锁BootLoader记录帖"><img src="https://img.yicareful.site/blog/mibl/small.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小米15解锁BootLoader记录帖"/></a><div class="content"><a class="title" href="/fa67d2693609/" title="小米15解锁BootLoader记录帖">小米15解锁BootLoader记录帖</a><time datetime="2026-04-28T03:50:00.000Z" title="发表于 2026-04-28 11:50:00">2026-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/37da03f328cb/" title="小米15临时root记录帖"><img src="https://img.yicareful.site/blog/miroot/small.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小米15临时root记录帖"/></a><div class="content"><a class="title" href="/37da03f328cb/" title="小米15临时root记录帖">小米15临时root记录帖</a><time datetime="2026-03-18T02:36:25.000Z" title="发表于 2026-03-18 10:36:25">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/abe5ecb25a3f/" title="阿迪达斯adios8 600km长测"><img src="https://img.yicareful.site/blog/adios8%E9%95%BF%E6%B5%8B/small.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿迪达斯adios8 600km长测"/></a><div class="content"><a class="title" href="/abe5ecb25a3f/" title="阿迪达斯adios8 600km长测">阿迪达斯adios8 600km长测</a><time datetime="2026-03-09T03:28:34.000Z" title="发表于 2026-03-09 11:28:34">2026-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/8c5a38a8b060/" title="安卓逆向实战-以keep为例进行脱壳"><img src="https://img.yicareful.site/blog/aznx-keep/aznx-small.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安卓逆向实战-以keep为例进行脱壳"/></a><div class="content"><a class="title" href="/8c5a38a8b060/" title="安卓逆向实战-以keep为例进行脱壳">安卓逆向实战-以keep为例进行脱壳</a><time datetime="2026-03-02T02:33:59.000Z" title="发表于 2026-03-02 10:33:59">2026-03-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/"><span class="card-category-list-name">安卓逆向</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/"><span class="card-category-list-name">说明文档</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B7%91%E9%9E%8B%E6%8E%A8%E8%8D%90/"><span class="card-category-list-name">跑鞋推荐</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B7%91%E9%9E%8B%E8%AF%84%E6%B5%8B/"><span class="card-category-list-name">跑鞋评测</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E9%97%AE%E9%A2%98/"><span class="card-category-list-name">软件问题</span><span class="card-category-list-count">4</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E4%BB%A3%E7%A0%81/" style="font-size: 1.5em; color: #99a9bf">代码</a> <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" style="font-size: 1.2em; color: #999da3">安卓逆向</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 1.1em; color: #999">插件</a> <a href="/tags/%E8%B7%91%E9%9E%8B/" style="font-size: 1.4em; color: #99a5b6">跑鞋</a> <a href="/tags/%E8%84%B1%E5%A3%B3/" style="font-size: 1.1em; color: #999">脱壳</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">前端开发</a> <a href="/tags/%E8%B7%91%E6%AD%A5/" style="font-size: 1.4em; color: #99a5b6">跑步</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 1.3em; color: #99a1ac">手机</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">11</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">15.6k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-30T12:12:28.129Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yi careful</span></div><div class="footer_custom_text">powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = [].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=e&c=f&c=g&c=h&c=j&c=k')
+    .then(response => response.json())
+    .then(data => {
+      const from = '出自 ' + data.from
+      typedJSFn.processSubtitle(data.hitokoto, [from])
+    })
+    .catch(err => {
+      console.error('Failed to get the Hitokoto API:', err)
+      typedJSFn.processSubtitle([])
+    })
+}
+typedJSFn.run(subtitleType)
+</script></div><script src="/js/f12.js"></script><script id="canvas_nest" defer="defer" color="251,210,106" opacity="0.2" zIndex="-1" count="99" mobile="true" src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/canvas-nest.min.js"></script></div></body></html>
